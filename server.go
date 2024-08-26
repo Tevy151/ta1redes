@@ -41,6 +41,6 @@ func TCP() {
 	buffer := make([]byte, 1024)
 	n, _ := conexion.Read(buffer)
 	preguntas := string(buffer[:n]) //leo cantidad de preguntas
-	fmt.Print(preguntas)
+	fmt.Print("TPC debe dar " + preguntas + " preguntas")
 
 }
