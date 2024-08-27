@@ -43,4 +43,21 @@ func TCP() {
 	preguntas := string(buffer[:n]) //leo cantidad de preguntas
 	fmt.Print("TPC debe dar " + preguntas + " preguntas")
 
+	arreglo1 := [2]string{"uno", "dos"}
+	arreglo2 := [2]string{"verda", "falso"}
+	puntaje := 0
+
+	for i := 0; i < 2; i++ { //hay que cambiar pa que dure la cantidad de preguntas
+		conexion.Write([]byte(arreglo1[i]))
+		n, _ := conexion.Read(buffer)
+		respuesta := string(buffer[:n])
+		if respuesta == arreglo2[i] {
+			puntaje = puntaje + 1
+		}
+
+		puntajeStr := fmt.Sprintf("%d", puntaje)
+		conexion.Write([]byte(puntajeStr))
+
+	}
+
 }
