@@ -30,5 +30,18 @@ func main() {
 
 	defer conectionT.Close()
 
-	conectionT.Write([]byte(preguntas))
+	conectionT.Write([]byte(preguntas)) //Conexion TCP
+	var respuesta string
+	for i := 0; i < 2; i++ {
+		n, _ = conectionT.Read(buffer)
+		pregunta := string(buffer[:n])
+		fmt.Println("Pregunta:", pregunta)
+		fmt.Scanln(&respuesta)
+		conectionT.Write([]byte(respuesta))
+		n, _ = conectionT.Read(buffer)
+		puntaje := string(buffer[:n])
+		fmt.Println("Tu Puntaje:", puntaje)
+
+	}
+
 }
